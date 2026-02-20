@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Oracle | Seek Your Truth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0514;
+            --mystic-purple: #2d0b4e;
+            --accent-orange: #ff7300;
+            --text-light: #e0d8ea;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Lora', serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at center, var(--mystic-purple) 0%, var(--bg-dark) 70%);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-orange);
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 115, 0, 0.3);
+        }
+
+        .funnel-container {
+            background: rgba(10, 5, 20, 0.8);
+            border: 1px solid var(--mystic-purple);
+            box-shadow: 0 0 30px rgba(45, 11, 78, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-style: italic;
+            color: #bfa7d9;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--mystic-purple);
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 8px rgba(255, 115, 0, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, var(--mystic-purple), var(--accent-orange));
+            border: none;
+            color: white;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            box-shadow: 0 0 15px var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Stripe Mock Button */
+        #stripe-btn {
+            background: #635bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="funnel-container">
+        <div class="step active" id="step-1">
+            <h1>The Oracle Awakens</h1>
+            <p style="text-align: center; font-size: 0.9em;">The spirits require your earthly identity to establish a connection.</p>
+            
+            <div class="input-group">
+                <label>Your Given Name</label>
+                <input type="text" id="name" placeholder="E.g., Alexander" required>
+            </div>
+            <div class="input-group">
+                <label>Where shall the prophecy be sent?</label>
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            
+            <button onclick="nextStep(2)">Align Energies (Next)</button>
+        </div>
+
+        <div class="step" id="step-2">
+            <h2>Cosmic Alignment</h2>
+            <p style="text-align: center; font-size: 0.9em;">Precision ensures a clear vision.</p>
+            
+            <div class="input-group">
+                <label>Your Zodiac Sign</label>
+                <select id="zodiac">
+                    <option value="" disabled selected>Select your sign...</option>
+                    <option value="Aries">Aries</option>
+                    <option value="Taurus">Taurus</option>
+                    <option value="Gemini">Gemini</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Leo">Leo</option>
+                    <option value="Virgo">Virgo</option>
+                    <option value="Libra">Libra</option>
+                    <option value="Scorpio">Scorpio</option>
+                    <option value="Sagittarius">Sagittarius</option>
+                    <option value="Capricorn">Capricorn</option>
+                    <option value="Aquarius">Aquarius</option>
+                    <option value="Pisces">Pisces</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>City of Birth (Crucial for astrological charting)</label>
+                <input type="text" id="birthplace" placeholder="E.g., London, UK" required>
+            </div>
+
+            <button onclick="nextStep(3)">Delve Deeper</button>
+        </div>
+
+        <div class="step" id="step-3">
+            <h2>The Burning Inquiry</h2>
+            <p style="text-align: center; font-size: 0.9em;">Close your eyes. Focus your intent. What do you seek from the Oracle?</p>
+            
+            <div class="input-group">
+                <label>Ask your question clearly and honestly...</label>
+                <textarea id="question" placeholder="E.g., Will my current career path lead me to the fulfillment I seek?"></textarea>
+            </div>
+
+            <button onclick="nextStep(4)">Consult the Spirits</button>
+        </div>
+
+        <div class="step" id="step-4">
+            <h2>The Exchange</h2>
+            <p style="text-align: center; font-size: 0.9em;">The connection is established. The Oracle sees your path, <strong id="display-name"></strong>.</p>
+            <p style="text-align: center; font-size: 0.85em; color: #bfa7d9;">
+                A true reading requires a transfer of energy. Because the Oracle meticulously consults the celestial charts, your deeply personalized reading will be delivered securely to your email within the next <strong>6 to 24 hours</strong>.
+            </p>
+            
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center;">
+                <h3 style="margin: 0; font-size: 1.2em;">Energy Exchange: $9.99</h3>
+            </div>
+
+            <button id="stripe-btn" onclick="triggerStripe()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="white"/></svg>
+                Pay securely with Stripe
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            if (stepNumber === 2 && (!document.getElementById('name').value || !document.getElementById('email').value)) {
+                alert("The spirits require your name and email to proceed."); return;
+            }
+            if (stepNumber === 3 && (!document.getElementById('zodiac').value || !document.getElementById('birthplace').value)) {
+                alert("Do not hide your celestial origins."); return;
+            }
+            if (stepNumber === 4) {
+                if (document.getElementById('question').value.length < 10) {
+                    alert("Please provide a deeper question for the Oracle to read."); return;
+                }
+                document.getElementById('display-name').innerText = document.getElementById('name').value;
+            }
+
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById(`step-${stepNumber}`).classList.add('active');
+        }
+
+        async function triggerStripe() {
+            const btn = document.getElementById('stripe-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = "Opening Secure Portal...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                zodiac: document.getElementById('zodiac').value,
+                birthplace: document.getElementById('birthplace').value,
+                question: document.getElementById('question').value
+            };
+
+            try {
+                // 👇 CHANGE THIS URL TO YOUR RENDER APP URL ONCE DEPLOYED 👇
+                const BACKEND_URL = 'https://the-digital-oracle.onrender.com/create-checkout-session'; 
+                
+                const response = await fetch(BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (data.url) {
+                    window.location.href = data.url; 
+                } else {
+                    throw new Error(data.error || 'Failed to initialize payment gateway.');
+                }
+            } catch (error) {
+                console.error('Connection Error:', error);
+                alert("The ethereal connection is currently unstable. Please try again.");
+                btn.innerHTML = originalText;
+                btn.style.opacity = "1";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

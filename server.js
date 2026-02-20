@@ -7,6 +7,11 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const nodemailer = require('nodemailer');
 
 const app = express();
+
+app.use(cors({
+    origin: '*' 
+}));
+
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const connection = new IORedis(process.env.REDIS_URL, { maxRetriesPerRequest: null });
