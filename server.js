@@ -5,6 +5,7 @@ const { Queue, Worker } = require('bullmq');
 const IORedis = require('ioredis');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const nodemailer = require('nodemailer');
+const cors = require('cors');
 
 const app = express();
 
